@@ -27,11 +27,20 @@ NLP assignment/
 
 ## Running the notebook
 
-Install the packages listed in `requirements.txt`, open
-`NLP_7th_Assignment.ipynb`, and run the cells from top to bottom. The notebook
-is self-contained and does not depend on helper modules outside this folder.
-Training is opt-in through `RUN_EXPERIMENTS = False`; enable it only when you
-are ready to run the five experiments.
+From the project folder on Windows, use Python 3.11 to set up and launch JupyterLab:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\jupyter-lab.exe NLP_7th_Assignment.ipynb
+```
+
+Run the notebook from top to bottom with `RUN_EXPERIMENTS = True` to train
+all five models. The LSTMs can take several minutes on a CPU. In **Try your
+own text**, replace the example in `text_to_tag` with English text and run
+that cell. It shows one BIO tag per token from each of the five models. You
+can rerun the text cell with new input throughout the same kernel session.
+After a kernel restart, run the training cells again.
 
 The train split is used for learning, validation is used for model selection
 and early stopping, and the test split is reserved for final evaluation.
@@ -41,14 +50,14 @@ matching. Token accuracy is not used as a replacement for entity-level F1.
 GloVe is downloaded by gensim the first time the GloVe cells run:
 `glove-wiki-gigaword-100`. Internet access is therefore required for
 Experiments 3 and 4 unless the gensim model is already cached.
+The first raw-text run also downloads NLTK's English sentence tokenizer and
+POS tagger data if they are missing. The N-gram model uses generated POS and
+rule-based chunk tags for raw text and the supplied tags for benchmark data.
 
 ## Results
 
-`results/results.csv` contains the current measured preliminary results.
-The current CSV contains the three completed classical experiments; it must be
-regenerated after Experiments 4 and 5 are run so that it contains all five
-models. The files in `results/visualizations/` are generated from CSV values,
-not invented sample values.
+Running all five experiments regenerates `results/results.csv`,
+`results/per_class_results.csv`, and the plots in `results/visualizations/`.
 
 The assignment report and presentation should be written in the student's own
 words. The notebook is implementation and experimental evidence, not a

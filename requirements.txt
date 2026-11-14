@@ -6,3 +6,4 @@ gensim
 tensorflow
 jupyter
 nbformat
+nltk>=3.9
